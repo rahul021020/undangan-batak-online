@@ -1,0 +1,106 @@
+============================================================
+RSVP ONLINE - UNDANGAN NARUTO & HINATA
+============================================================
+
+Versi ini SUDAH TIDAK menggunakan localStorage untuk RSVP.
+
+Ucapan tamu disimpan ke Google Sheets sehingga:
+- Tamu A mengirim ucapan -> masuk Google Sheets.
+- Tamu B membuka undangan -> dapat melihat ucapan Tamu A.
+- Tamu C juga melihat data yang sama.
+- Data tidak hanya tersimpan di laptop/HP pengirim.
+
+============================================================
+LANGKAH 1 - BUAT GOOGLE SHEETS
+============================================================
+
+1. Buat Google Sheets baru.
+2. Buka:
+   Extensions > Apps Script
+3. Buka file:
+   google-apps-script-Code.gs
+4. Copy seluruh isinya ke Apps Script.
+5. Simpan.
+6. Jalankan fungsi:
+   setupSheet
+7. Izinkan akses Google yang diminta.
+
+Sheet "RSVP" akan dibuat otomatis.
+
+============================================================
+LANGKAH 2 - DEPLOY WEB APP
+============================================================
+
+Di Apps Script:
+
+Deploy > New deployment
+
+Pilih:
+Type: Web app
+Execute as: Me
+Who has access: Anyone
+
+Klik Deploy.
+
+Copy URL yang berakhiran:
+ /exec
+
+Contoh:
+https://script.google.com/macros/s/XXXXXXXXXXXX/exec
+
+============================================================
+LANGKAH 3 - MASUKKAN URL KE WEBSITE
+============================================================
+
+Buka:
+config.js
+
+Cari:
+
+const RSVP_WEB_APP_URL = '';
+
+Masukkan URL /exec:
+
+const RSVP_WEB_APP_URL = 'https://script.google.com/macros/s/XXXXXXXXXXXX/exec';
+
+Simpan.
+
+============================================================
+LANGKAH 4 - UPLOAD KE VERCEL
+============================================================
+
+Upload seluruh folder undangan_pernikahan_batak ke Vercel.
+
+PENTING:
+config.js harus ikut ter-upload.
+
+Setelah Vercel selesai deploy:
+- buka undangan dari HP/laptop lain
+- kirim ucapan
+- buka lagi dari perangkat berbeda
+- ucapan harus muncul untuk semua orang.
+
+============================================================
+CATATAN
+============================================================
+
+Jangan gunakan localStorage untuk RSVP.
+Versi ini sudah menghapus penyimpanan RSVP lokal.
+
+Jika mengganti background:
+assets/backgrounds/
+
+cover.png       = sebelum klik
+hero.png        = halaman pembuka
+mempelai.png    = mempelai
+firman.png      = firman
+save-date.png   = save the date
+acara.png       = waktu & tempat
+susunan-acara.png = susunan acara
+lokasi.png      = lokasi
+galeri.png      = galeri
+rsvp.png        = RSVP
+hadiah.png      = hadiah
+penutup.png     = penutup/footer
+
+Setelah mengganti gambar, tekan CTRL+F5.
